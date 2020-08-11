@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.041,H:\Coding\Password Manager\BasicEncDec.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.201,H:\Coding\Password Manager\BasicEncDec.pas=H:\Coding\Password Manager\BasicEncrypt.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.954,H:\Coding\Password Manager\PassMan.dproj=H:\Coding\Password Manager\TabbedApplication.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.513,H:\Coding\Password Manager\BasicEncrypt.pas=H:\Coding\Password Manager\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.192,H:\Coding\Password Manager\BasicEncrypt.pas=H:\Coding\Password Manager\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.851,=H:\Download\LockBox3-master\LockBox3-master\run\cryptography\uTPLb_StreamCipher.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.630,=H:\Coding\Password Manager\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.198,=H:\Coding\Password Manager\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.546,=H:\Coding\Password Manager\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.713,=H:\Coding\Password Manager\Unit1.pas</Transaction>
+    <Transaction>2020-07-26 10:20:10.000.280,H:\Coding\PassMan Pro\PassMan.dproj=H:\Coding\Password Manager\PassMan.dproj</Transaction>
+    <Transaction>2020-07-26 10:20:28.000.550,H:\Coding\PassMan Pro\TabbedTemplate.pas=H:\Coding\Password Manager\TabbedTemplate.pas</Transaction>
+    <Transaction>2020-07-26 10:20:28.000.550,H:\Coding\PassMan Pro\TabbedTemplate.fmx=H:\Coding\Password Manager\TabbedTemplate.fmx</Transaction>
+    <Transaction>2020-07-26 10:21:26.000.691,H:\Coding\PassMan Pro\PassManPro.dproj=H:\Coding\PassMan Pro\PassMan.dproj</Transaction>
+    <Transaction>2020-08-09 18:26:37.000.498,H:\Coding\PassMan Pro\PassManPro.dproj=H:\Coding\PassMan Pro\PassManPlus.dproj</Transaction>
+    <Transaction>2020-08-10 15:59:15.000.835,H:\Coding\PassMan v2\PassMan.dproj=H:\Coding\PassMan v2\PassManPlus.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
