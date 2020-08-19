@@ -59,7 +59,7 @@ Before calling free, you need to call Finalize to save the database in the strea
 
 ## Vulnerablities
 
-The passwords are kept unencrypted in memory while the program is running. Always close the program after you are done.
+The passwords are kept unencrypted in memory while the program is running. This can easily be fixed but meh :v Always close the program after you are done.
 
 ## Bugs
 
