@@ -57,11 +57,11 @@ Write or read the masterpassword property to change or get the master password.
 
 Before calling free, you need to call Finalize to save the database in the stream you gave whwn you called Create. The Finalize procedure clears the stream and writes header and other informations to it. Call finalize every single time after you add or delete a password or change the masterpassword to make sure nothing is left unsaved. 
 
-##Vulnerablities
+## Vulnerablities
 
 The passwords are kept unencrypted in memory while the program is running. Always close the program after you are done.
 
-##Bugs
+## Bugs
 
 Go find yourself.
 
