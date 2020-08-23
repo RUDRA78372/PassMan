@@ -14,7 +14,7 @@ Don't lose those files even if the application is lost.
 
 ## How to use?
 
-If you are launching the app for the first time you need to set a Master Password. This master password is the key to unlock the program and your passwords. You can change it later. If you are using android, it may have issues with permissions and fail to set the master password. Make sure you have allowed the "storage" permission, force close the application, and restart. It shouldn't throw any more errors.
+If you are launching the app for the first time you need to set a Master Password. This master password is the key to unlock the program and your passwords. You can change it later. If you are using android, it may have issues with permissions and fail to set the master password. Make sure you have allowed the "storage" permission, force close the application and restart. It shouldn't throw any more errors.
 
 There are four tabs in the application:
 - New
@@ -47,7 +47,7 @@ You need to have Delphi installed on your system. Currently, I am using Delphi 1
 
 ### PMDB file format specification
 
-Passwords.pmdb is the file used to store passwords in this program. A pmdb file starts with a 10-byte header which is "PMDB-RUDRA" in the string. Then an integer with the size of the rest can be found. The rest is encrypted with the master password.
+Passwords.pmdb is the file used to store passwords in this program. A pmdb file starts with a 10-byte header which is "PMDB-RUDRA" in string. Then an integer containing the size of the rest can be found. The rest is encrypted with the master password.
 
 PassMan is basically a wrapper for PMDB.pas. For using the PMDB.pas in your application, you need to call Create first. The first parameter is for the master password. The second parameter should be a dedicated seekable stream for PMDB, a TFileStream or TMemorystream is suggested for use. Set the position of the stream to 0 before calling Create.  If you are creating a new pmdb file, set the last parameter to true, else use false.
 
