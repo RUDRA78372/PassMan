@@ -47,7 +47,7 @@ You need to have Delphi installed on your system. Currently I am using Delphi 10
 
 ### PMDB file format specification
 
-Passwords.pmdb is the file used to store passwords in this program. A pmdb file starts with a 10 byte header which is "PMDB-RUDRA" in string. Then an integer with the size of the rest can be found. The rest is encrypted with master password.
+Passwords.pmdb is the file used to store passwords in this program. A pmdb file starts with a 10 byte header which is "PMDB-RUDRA" in string. Then an integer containing the size of the rest can be found. The rest is encrypted with master password.
 
 PassMan is basically a wrapper for PMDB.pas. For using the PMDB.pas in your application, you need to call Create first. The first parameter is for the master password. The second parameter should be a dedicated seekable stream for PMDB, a TFileStream or TMemorystream is suggested for using. Set the position of the stream to 0 before calling Create.  If you are creating a new pmdb file, set the last parameter to true, else use false.
 
