@@ -134,66 +134,7 @@ begin
     end)
 end;
 
-(*
-  function idfileexist(idftp1: TIdFtp; fn: string): Boolean;
-  var
-  l: TStringList;
-  begin
-  l := TStringList.Create;
-  idftp1.List(l, fn, False);
-  Result := l.count > 0;
-  l.Free;
-  end
 
-  procedure TTabbedForm.Button10Click(Sender: TObject);
-  var
-  idftp1: TIdFtp;
-  begin
-  idftp1 := TIdFtp.Create;
-  idftp1.Host := 'ftpupload.net';
-  idftp1.Username := 'unaux_25773506';
-  idftp1.Password := 'zxa4az6x0tu4';
-  idftp1.Passive := True;
-  idftp1.Connect;
-  if idftp1.Connected then
-  begin
-  if idfileexist(idftp1, 'htdocs/PassMan/Passwords.pmdb') then
-  idftp1.get('htdocs/PassMan/Passwords.pmdb',
-  CurrDir + 'Passwords.pmdb', True);
-  if idfileexist(idftp1, 'htdocs/PassMan/PMKey.md5') then
-  idftp1.get('htdocs/PassMan/PMKey.md5', CurrDir + 'PMKey.md5', True);
-  Showmessage('Key and database downloaded from server');
-  end
-  else
-  Showmessage
-  ('Connection to server failed'#13#10'Please check your internet connection');
-  idftp1.Free;
-  end;
-
-  procedure TTabbedForm.Button11Click(Sender: TObject);
-  var
-  idftp1: TIdFtp;
-  begin
-  idftp1 := TIdFtp.Create;
-  idftp1.Host := 'ftpupload.net';
-  idftp1.Username := 'unaux_25773506';
-  idftp1.Password := 'zxa4az6x0tu4';
-  idftp1.Passive := True;
-  idftp1.Connect;
-  if idftp1.Connected then
-  begin
-  if fileexists(CurrDir + 'Passwords.pmdb') then
-  idftp1.Put(CurrDir + 'Passwords.pmdb', 'htdocs/PassMan/Passwords.pmdb');
-  if fileexists(CurrDir + 'PMKey.md5') then
-  idftp1.Put(CurrDir + 'PMKey.md5', 'htdocs/PassMan/PMKey.md5');
-  Showmessage('Key and database uploaded to server');
-  end
-  else
-  Showmessage
-  ('Connection to server failed'#13#10'Please check your internet connection');
-  idftp1.Free;
-  end;
-*)
 procedure TTabbedForm.Button1Click(Sender: TObject);
 begin
   PI.Name := Edit3.Text;
@@ -262,37 +203,6 @@ var
   uppstr, lowstr, numstr, symstr: string;
 begin
   Edit2.Text := '';
-  (* if Switch1.IsChecked then
-    Edit2.Text:=inttostr(Randomuniform(strtoint(Label7.Text)))
-    else
-    begin
-    Edit2.Text:=RandomPasswordB(strtoint(Label7.Text),strtoint(Label7.Text),false,false,true);
-    end;
-    //RandomPasswordB(strtoint(Label7.Text),strtoint(Label7.Text),false,false,true);
-  *)
-  (* Randomize;
-    if (CheckBox1.IsChecked = False) and (CheckBox2.IsChecked = False) and (CheckBox3.IsChecked = False) and
-    (CheckBox4.IsChecked = False) then
-    exit;
-    uppstr := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    lowstr := 'abcdefghijklmnopqrstuvwxyz';
-    numstr := '0123456789';
-    symstr := '`~!@#$%^&*()_+=-[];\:"|<>?,./';
-    while (Length(Edit2.Text)< strtoint(Label7.Text)) do
-    begin
-    if CheckBox1.IsChecked then
-    Edit2.Text := Edit2.Text + numstr[Random(Length(numstr))];
-    if CheckBox2.IsChecked then
-    Edit2.Text := Edit2.Text + uppstr[Random(Length(uppstr))];
-    if CheckBox3.IsChecked then
-    Edit2.Text := Edit2.Text + lowstr[Random(Length(lowstr))];
-    if CheckBox4.IsChecked then
-    Edit2.Text := Edit2.Text + symstr[Random(Length(symstr))];
-
-    end; *)
-  (* if Switch1.IsChecked then
-    Edit2.Text := GeneratePass(strtoint(Label7.Text), False, False, True, False)
-    else *)
   Edit2.Text := GeneratePass(strtoint(Label7.Text), CheckBox2.IsChecked,
     CheckBox3.IsChecked, CheckBox1.IsChecked, CheckBox4.IsChecked);
 end;
