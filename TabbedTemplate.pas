@@ -1,4 +1,4 @@
-unit TabbedTemplate;
+﻿unit TabbedTemplate;
 
 interface
 
@@ -11,7 +11,7 @@ uses
   uTPLb_CryptographicLibrary, uTPLb_BaseNonVisualComponent,
   uTPLb_Codec, System.permissions, FMX.DialogService, FMX.ExtCtrls,
   FMX.ScrollBox, FMX.Memo, FMX.Ani, FMX.SearchBox, PMDB,
-  FMX.DialogService.Async;
+  FMX.DialogService.Async, FMX.Memo.Types;
 
 type
   TTabbedForm = class(TForm)
@@ -60,6 +60,7 @@ type
     Layout1: TLayout;
     Layout2: TLayout;
     Layout3: TLayout;
+    Layout4: TLayout;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo;
       var Handled: Boolean);
@@ -74,6 +75,8 @@ type
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    // procedure Button10Click(Sender: TObject);
+    // procedure Button11Click(Sender: TObject);
   private
     procedure DisplayRationale(Sender: TObject;
       const APermissions: TArray<string>; const APostRationaleProc: TProc);
@@ -131,6 +134,66 @@ begin
     end)
 end;
 
+(*
+  function idfileexist(idftp1: TIdFtp; fn: string): Boolean;
+  var
+  l: TStringList;
+  begin
+  l := TStringList.Create;
+  idftp1.List(l, fn, False);
+  Result := l.count > 0;
+  l.Free;
+  end
+
+  procedure TTabbedForm.Button10Click(Sender: TObject);
+  var
+  idftp1: TIdFtp;
+  begin
+  idftp1 := TIdFtp.Create;
+  idftp1.Host := 'ftpupload.net';
+  idftp1.Username := 'unaux_25773506';
+  idftp1.Password := 'zxa4az6x0tu4';
+  idftp1.Passive := True;
+  idftp1.Connect;
+  if idftp1.Connected then
+  begin
+  if idfileexist(idftp1, 'htdocs/PassMan/Passwords.pmdb') then
+  idftp1.get('htdocs/PassMan/Passwords.pmdb',
+  CurrDir + 'Passwords.pmdb', True);
+  if idfileexist(idftp1, 'htdocs/PassMan/PMKey.md5') then
+  idftp1.get('htdocs/PassMan/PMKey.md5', CurrDir + 'PMKey.md5', True);
+  Showmessage('Key and database downloaded from server');
+  end
+  else
+  Showmessage
+  ('Connection to server failed'#13#10'Please check your internet connection');
+  idftp1.Free;
+  end;
+
+  procedure TTabbedForm.Button11Click(Sender: TObject);
+  var
+  idftp1: TIdFtp;
+  begin
+  idftp1 := TIdFtp.Create;
+  idftp1.Host := 'ftpupload.net';
+  idftp1.Username := 'unaux_25773506';
+  idftp1.Password := 'zxa4az6x0tu4';
+  idftp1.Passive := True;
+  idftp1.Connect;
+  if idftp1.Connected then
+  begin
+  if fileexists(CurrDir + 'Passwords.pmdb') then
+  idftp1.Put(CurrDir + 'Passwords.pmdb', 'htdocs/PassMan/Passwords.pmdb');
+  if fileexists(CurrDir + 'PMKey.md5') then
+  idftp1.Put(CurrDir + 'PMKey.md5', 'htdocs/PassMan/PMKey.md5');
+  Showmessage('Key and database uploaded to server');
+  end
+  else
+  Showmessage
+  ('Connection to server failed'#13#10'Please check your internet connection');
+  idftp1.Free;
+  end;
+*)
 procedure TTabbedForm.Button1Click(Sender: TObject);
 begin
   PI.Name := Edit3.Text;
@@ -144,31 +207,94 @@ begin
   Showmessage('Saved to database');
 end;
 
+function GeneratePass(ALength: Integer; ASLetters, ACLetters, ANumbers,
+  ASymbols: Boolean): String;
+var
+  I: Integer;
+begin
+  Randomize;
+  SetLength(Result, ALength);
+  if (ASLetters = False) and (ACLetters = False) and (ANumbers = False) and
+    (ASymbols = False) then
+  begin
+    I := 0;
+    while I < ALength do
+    begin
+      Result[Succ(I)] := ' ';
+      Inc(I);
+    end;
+    exit;
+  end;
+  I := 0;
+  while I < ALength do
+  begin
+    case Random(4) of
+      0:
+        if ASLetters then
+        begin
+          Result[Succ(I)] := chr(Random(26) + $41);
+          Inc(I);
+        end;
+      1:
+        if ACLetters then
+        begin
+          Result[Succ(I)] := chr(Random(26) + $61);
+          Inc(I);
+        end;
+      2:
+        if ANumbers then
+        begin
+          Result[Succ(I)] := chr(Random(10) + $30);
+          Inc(I);
+        end;
+      3:
+        if ASymbols then
+        begin
+          Result[Succ(I)] := chr(Random(16) + $21);
+          Inc(I);
+        end;
+    end;
+  end;
+end;
+
 procedure TTabbedForm.Button2Click(Sender: TObject);
 var
   uppstr, lowstr, numstr, symstr: string;
 begin
   Edit2.Text := '';
-  Randomize;
-  if (CheckBox1.IsChecked = False) and (CheckBox2.IsChecked = False) and (CheckBox3.IsChecked = False) and
+  (* if Switch1.IsChecked then
+    Edit2.Text:=inttostr(Randomuniform(strtoint(Label7.Text)))
+    else
+    begin
+    Edit2.Text:=RandomPasswordB(strtoint(Label7.Text),strtoint(Label7.Text),false,false,true);
+    end;
+    //RandomPasswordB(strtoint(Label7.Text),strtoint(Label7.Text),false,false,true);
+  *)
+  (* Randomize;
+    if (CheckBox1.IsChecked = False) and (CheckBox2.IsChecked = False) and (CheckBox3.IsChecked = False) and
     (CheckBox4.IsChecked = False) then
     exit;
-  uppstr := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  lowstr := 'abcdefghijklmnopqrstuvwxyz';
-  numstr := '0123456789';
-  symstr := '`~!@#$%^&*()_+=-[];\:"|<>?,./';
-  while (Length(Edit2.Text)< strtoint(Label7.Text)) do
-  begin
-        if CheckBox1.IsChecked then
-            Edit2.Text := Edit2.Text + numstr[Random(Length(numstr))];
-        if CheckBox2.IsChecked then
-            Edit2.Text := Edit2.Text + uppstr[Random(Length(uppstr))];
-        if CheckBox3.IsChecked then
-            Edit2.Text := Edit2.Text + lowstr[Random(Length(lowstr))];
-        if CheckBox4.IsChecked then
-            Edit2.Text := Edit2.Text + symstr[Random(Length(symstr))];
+    uppstr := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    lowstr := 'abcdefghijklmnopqrstuvwxyz';
+    numstr := '0123456789';
+    symstr := '`~!@#$%^&*()_+=-[];\:"|<>?,./';
+    while (Length(Edit2.Text)< strtoint(Label7.Text)) do
+    begin
+    if CheckBox1.IsChecked then
+    Edit2.Text := Edit2.Text + numstr[Random(Length(numstr))];
+    if CheckBox2.IsChecked then
+    Edit2.Text := Edit2.Text + uppstr[Random(Length(uppstr))];
+    if CheckBox3.IsChecked then
+    Edit2.Text := Edit2.Text + lowstr[Random(Length(lowstr))];
+    if CheckBox4.IsChecked then
+    Edit2.Text := Edit2.Text + symstr[Random(Length(symstr))];
 
-  end;
+    end; *)
+  (* if Switch1.IsChecked then
+    Edit2.Text := GeneratePass(strtoint(Label7.Text), False, False, True, False)
+    else *)
+  Edit2.Text := GeneratePass(strtoint(Label7.Text), CheckBox2.IsChecked,
+    CheckBox3.IsChecked, CheckBox1.IsChecked, CheckBox4.IsChecked);
 end;
 
 procedure TTabbedForm.Button3Click(Sender: TObject);
@@ -290,16 +416,23 @@ begin
   PermissionsService.RequestPermissions([PermissionStorageWrite],
     RequestPermissionsResult, DisplayRationale);
   Randomize;
+  (* Tmpdir := Includetrailingbackslash
+    (Includetrailingbackslash(TPath.GetSharedDocumentsPath) + 'PassMan' +
+    inttostr(Random(Integer.MaxValue))); *)
+  // Forcedirectories(Tmpdir);
   CurrDir := Includetrailingbackslash(TPath.GetSharedDocumentsPath);
 {$IF DEFINED(ANDROID)}
   TabbedForm.StyleBook := StyleBook2;
-
+  CurrDir := Includetrailingbackslash(TPath.GetSharedDocumentsPath);
   if not fileexists(CurrDir + 'PMKey.md5') then
     Showmessage
       ('If you face any errors changing the master password'#13#10'please restart the application');
 {$ELSE}
   TabbedForm.StyleBook := StyleBook1;
+  CurrDir := Includetrailingbackslash(GetCurrentDir);
 {$ENDIF}
+  // TrackBar1.Min := 1;
+  // TrackBar1.Max := 32;
   TabItem1.Visible := False;
   TabItem2.Visible := False;
   TabControl1.ActiveTab := TabItem3;
